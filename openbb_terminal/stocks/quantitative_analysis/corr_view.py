@@ -33,7 +33,7 @@ def call_corr(self, other_args: List[str]):
         help="The first stock symbol (e.g., AAPL)"
     )
     parser.add_argument(
-        "-s2",
+        "-r",
         "--ref_symbol",
         type=str,
         dest="ref_symbol",
