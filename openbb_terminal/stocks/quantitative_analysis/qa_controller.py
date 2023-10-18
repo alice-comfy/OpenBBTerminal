@@ -67,6 +67,7 @@ class QaController(StockBaseController):
         "sh",
         "so",
         "om",
+        "corr"
     ]
 
     stock_interval = [1, 5, 15, 30, 60]
@@ -150,6 +151,7 @@ class QaController(StockBaseController):
         mt.add_cmd("cusum", not self.stock.empty)
         mt.add_cmd("capm", not self.stock.empty)
         mt.add_cmd("beta", not self.stock.empty)
+        mt.add_cmd("corr", not self.stock.empty)
         console.print(text=mt.menu_text, menu="Stocks - Quantitative Analysis")
 
     def custom_reset(self):
@@ -1160,3 +1162,14 @@ class QaController(StockBaseController):
                 ns_parser.start,
                 ns_parser.end,
             )
+    @log_start_end(log=logger)
+    def call_corr(self, other_args: List[str]):
+        parser = argparse.ArgumentParser(
+            add_help=False,
+            formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+            prog="corr",
+            description= """
+    determine rolling correlation between 2 stocks.
+"""
+        )
+        corr_parser = parser
